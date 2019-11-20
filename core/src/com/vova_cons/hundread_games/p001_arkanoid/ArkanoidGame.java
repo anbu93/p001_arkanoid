@@ -1,33 +1,56 @@
 package com.vova_cons.hundread_games.p001_arkanoid;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.vova_cons.hundread_games.p001_arkanoid.services.ServiceLocator;
+import com.vova_cons.hundread_games.p001_arkanoid.services.core_service.CoreService;
+import com.vova_cons.hundread_games.p001_arkanoid.services.core_service.CoreServiceV1;
 
-public class ArkanoidGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+public class ArkanoidGame extends Game {
+	private CoreService coreService;
+	private Screen nextScreen = null;
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		coreService = new CoreServiceV1(this);
+		ServiceLocator.register(CoreService.class, coreService);
+		coreService.registerCoreServices();
+		coreService.registerGameServices();
+		coreService.registerScreens();
+		coreService.startGame();
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		float delta = Gdx.graphics.getDeltaTime();
+		update(delta);
+		render(delta);
+		performChangeScreen();
 	}
-	
+
+	private void update(float delta) {
+		coreService.update(delta);
+	}
+
+	private void render(float delta) {
+		if (screen != null) {
+			screen.render(delta);
+		}
+	}
+
+	private void performChangeScreen() {
+		if (nextScreen != null) {
+			super.setScreen(nextScreen);
+			nextScreen = null;
+		}
+	}
+
 	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+	public void setScreen(Screen screen) {
+		this.nextScreen = screen;
 	}
 }
