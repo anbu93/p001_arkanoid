@@ -2,9 +2,8 @@ package com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen;
 
 import com.vova_cons.hundread_games.p001_arkanoid.screens.BaseScreen;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.ScreenType;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.UI;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.RickoshetDirection;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.World;
+import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.BallsSystem;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.GameSystem;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.InputSystem;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.MoveSystem;
@@ -31,6 +30,7 @@ public class GameScreen extends BaseScreen {
         createWorld();
         systems.add(new InputSystem(world));
         systems.add(new MoveSystem(world));
+        systems.add(new BallsSystem(world));
         renderer = new Renderer(world);
         this.addActor(renderer);
     }
@@ -43,10 +43,8 @@ public class GameScreen extends BaseScreen {
     }
 
     private void createWorld() {
-        world = new World();
+        world = new World(WIDTH, HEIGHT);
         world.initBoard(WIDTH/2f - world.board.body.w/2f, 0, Balance.BOARD_WIDTH, Balance.BOARD_HEIGHT);
-        world.addWall(-100, 0, 100, UI.SCENE_WIDE_WIDTH, RickoshetDirection.Right);
-        world.addWall(UI.SCENE_WIDE_WIDTH-100, 0, 100, UI.SCENE_HEIGHT, RickoshetDirection.Left);
-        world.addWall(0, UI.SCENE_HEIGHT, UI.SCENE_WIDE_WIDTH, 100, RickoshetDirection.Down);
+        world.addBall(WIDTH/2f - Balance.BALL_SIZE, Balance.BOARD_HEIGHT, 300, 300);
     }
 }

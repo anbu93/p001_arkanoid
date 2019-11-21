@@ -8,4 +8,5 @@ public class Balance {
     public static float BOARD_WIDTH = 300; //pixels
     public static float BOARD_HEIGHT = 50; //pixels
     public static float BALL_SIZE = 75; //pixels
+    public static float BALL_SPEED = 700; //pixels per seconds
 }

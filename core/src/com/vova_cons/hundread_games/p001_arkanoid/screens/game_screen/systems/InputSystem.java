@@ -2,7 +2,6 @@ package com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.Balance;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.World;
 
 /**
@@ -23,7 +22,6 @@ public class InputSystem extends GameSystem {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             dir = dir + 1;
         }
-        float deltaX = dir * Balance.BOARD_SPPED * delta;
-        world.board.movement.x = deltaX;
+        world.board.movement.x = dir;
     }
 }
