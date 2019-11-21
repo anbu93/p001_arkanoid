@@ -3,10 +3,7 @@ package com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.BaseScreen;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.ScreenType;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.World;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.BallsSystem;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.GameSystem;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.InputSystem;
-import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.MoveSystem;
+import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.systems.*;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.view.Renderer;
 
 import java.util.LinkedList;
@@ -31,6 +28,8 @@ public class GameScreen extends BaseScreen {
         systems.add(new InputSystem(world));
         systems.add(new MoveSystem(world));
         systems.add(new BallsSystem(world));
+        systems.add(new CollisionSolveSystem(world));
+        systems.add(new EntityDestroySystem(world));
         renderer = new Renderer(world);
         this.addActor(renderer);
     }

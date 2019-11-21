@@ -8,4 +8,12 @@ public class Body {
     public float y = 0;
     public float w = 0;
     public float h = 0;
+
+    public float centerX() {
+        return x + w/2f;
+    }
+
+    public float centerY() {
+        return y + h/2f;
+    }
 }

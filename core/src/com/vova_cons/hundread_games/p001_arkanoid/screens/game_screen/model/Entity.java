@@ -10,6 +10,7 @@ public class Entity {
     public Body body = new Body();
     public Vector2 movement = null;
     public RickoshetDirection rickoshetDirection = null;
+    public boolean isRemoved = false;
 
     public Entity() {}
 

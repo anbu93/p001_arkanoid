@@ -9,8 +9,8 @@ import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.Enti
  **/
 public class Logic {
     public static boolean isCollision(Body a, Body b) {
-        float dx = Math.abs(a.x - b.x);
-        float dy = Math.abs(a.y - b.y);
+        float dx = Math.abs(a.centerX() - b.centerX());
+        float dy = Math.abs(a.centerY() - b.centerY());
         return (a.w/2f + b.w/2f) >= dx && (a.h/2f + b.h/2f) >= dy;
     }
 

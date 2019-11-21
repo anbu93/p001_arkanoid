@@ -6,14 +6,11 @@ import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.Enti
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.RickoshetDirection;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model.World;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Created by anbu on 19.11.19.
  **/
 public class BallsSystem extends GameSystem {
-    private List<Entity> destroyEntities = new LinkedList<Entity>();
+    private int boardActionCount = 0;
 
     public BallsSystem(World world) {
         super(world);
@@ -33,16 +30,12 @@ public class BallsSystem extends GameSystem {
     }
 
     private void checkBricksCollision(Entity ball) {
-        destroyEntities.clear();
         for(Entity brick : world.bricks) {
             if (Logic.isCollision(ball.body, brick.body)) {
-                destroyEntities.add(brick);
+                brick.isRemoved = true;
                 RickoshetDirection direction = detectRickoshetDirection(ball, brick);
                 applyRickoshet(ball, direction);
             }
-        }
-        for(Entity brick : destroyEntities) {
-            world.bricks.remove(brick);
         }
     }
 
@@ -79,12 +72,8 @@ public class BallsSystem extends GameSystem {
                 resultAngle = Balance.MAX_BALL_ANGLE;
             }
             Logic.setAngle(ball, resultAngle);
-            float afterAngle = Logic.getAngle(ball);
-            System.out.println("Collision board:\n" +
-                    "\tbefore=" + ballAngle + "\n" +
-                    "\tforce=" + angleForce + "\n" +
-                    "\tdelta=" + angleDelta + "\n" +
-                    "\tresult=" + resultAngle + " (" + afterAngle + ")");
+            boardActionCount++;
+            System.out.println("Board action: " + boardActionCount);
         }
     }
 
