@@ -20,7 +20,7 @@ public abstract class GameSystem {
     }
 
     public void update(float delta) {
-        if (workingState == world.state) {
+        if (workingState == null || workingState == world.state) {
             updateSpecific(delta);
         }
     }

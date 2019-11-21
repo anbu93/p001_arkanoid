@@ -19,9 +19,9 @@ public class GameRuleSystem extends GameSystem {
 
     private void checkWin() {
         if (world.bricks.isEmpty()) {
-            System.out.println("Win game");
+            System.out.println("Win game!");
             world.state = WorldState.Win;
-            world.ui.lose();
+            world.ui.win();
         }
     }
 

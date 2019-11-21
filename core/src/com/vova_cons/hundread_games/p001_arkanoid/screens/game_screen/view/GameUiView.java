@@ -50,4 +50,13 @@ public class GameUiView extends Group {
         resultLabel.setVisible(true);
         resultLabel.setText("Game over!");
     }
+
+    public void pause() {
+        resultLabel.setVisible(true);
+        resultLabel.setText("Paused");
+    }
+
+    public void resume() {
+        resultLabel.setVisible(false);
+    }
 }
