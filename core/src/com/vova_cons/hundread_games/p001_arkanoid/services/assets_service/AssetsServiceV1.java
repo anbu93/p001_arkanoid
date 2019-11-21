@@ -21,6 +21,7 @@ public class AssetsServiceV1 implements AssetsService {
         assetManager.load("textures/ball.png", Texture.class);
         assetManager.load("textures/board.png", Texture.class);
         assetManager.load("textures/brick.png", Texture.class);
+        assetManager.load("textures/play.png", Texture.class);
     }
 
     @Override
