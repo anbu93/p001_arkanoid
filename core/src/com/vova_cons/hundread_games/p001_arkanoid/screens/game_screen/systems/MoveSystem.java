@@ -16,7 +16,7 @@ public class MoveSystem extends GameSystem {
     }
 
     @Override
-    public void update(float delta) {
+    public void updateSpecific(float delta) {
         for(Entity balls : world.balls) {
             applyMovements(balls, delta, Balance.BALL_SPEED);
         }

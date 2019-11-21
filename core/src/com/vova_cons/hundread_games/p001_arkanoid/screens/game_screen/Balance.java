@@ -14,4 +14,5 @@ public class Balance {
     public static final float BALL_SIZE = 75; //pixels
     public static final float BALL_SPEED = 700; //pixels per seconds
     public static final float MAX_BALL_ANGLE = 70; //degrees
+    public static final int BRICK_DESTROY_SCORE = 1; //scores
 }

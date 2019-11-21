@@ -3,6 +3,7 @@ package com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model;
 import com.badlogic.gdx.math.Vector2;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.Balance;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.Logic;
+import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.view.GameUiView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,11 +12,13 @@ import java.util.List;
  * Created by anbu on 19.11.19.
  **/
 public class World {
+    public WorldState state = WorldState.GameProcess;
     public float width;
     public float height;
     public Entity board = new Entity(EntityType.Board);
     public List<Entity> balls = new LinkedList<Entity>();
     public List<Entity> bricks = new LinkedList<Entity>();
+    public GameUiView ui;
 
     public World(float width, float height) {
         this.width = width;

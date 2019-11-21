@@ -17,7 +17,7 @@ public class BallsSystem extends GameSystem {
     }
 
     @Override
-    public void update(float delta) {
+    public void updateSpecific(float delta) {
         for(Entity ball : world.balls) {
             updateBall(ball);
         }
@@ -87,8 +87,8 @@ public class BallsSystem extends GameSystem {
         if (ball.body.y + ball.body.h > world.height) {
             applyRickoshet(ball, RickoshetDirection.Down);
         }
-        if (ball.body.y < 0) { //for test
-            applyRickoshet(ball, RickoshetDirection.Up);
+        if (ball.body.y + ball.body.h < 0) {
+            ball.isRemoved = true;
         }
     }
 

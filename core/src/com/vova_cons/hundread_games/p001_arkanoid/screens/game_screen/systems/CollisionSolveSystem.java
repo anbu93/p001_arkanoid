@@ -17,7 +17,7 @@ public class CollisionSolveSystem extends GameSystem {
     }
 
     @Override
-    public void update(float delta) {
+    public void updateSpecific(float delta) {
         for(Entity ball : world.balls) {
             updateBall(ball, delta);
         }

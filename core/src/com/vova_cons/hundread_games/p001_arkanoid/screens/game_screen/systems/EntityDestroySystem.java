@@ -17,7 +17,7 @@ public class EntityDestroySystem extends GameSystem {
     }
 
     @Override
-    public void update(float delta) {
+    public void updateSpecific(float delta) {
         destroyBricks();
         destroyBalls();
     }
@@ -27,6 +27,7 @@ public class EntityDestroySystem extends GameSystem {
         for(Entity brick : world.bricks){
             if (brick.isRemoved) {
                 destroyEntities.add(brick);
+                world.ui.addScore();
             }
         }
         for(Entity brick : destroyEntities) {

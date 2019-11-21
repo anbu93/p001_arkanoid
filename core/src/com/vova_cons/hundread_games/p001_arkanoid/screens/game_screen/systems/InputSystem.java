@@ -14,7 +14,7 @@ public class InputSystem extends GameSystem {
     }
 
     @Override
-    public void update(float delta) {
+    public void updateSpecific(float delta) {
         int dir = 0;
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             dir = dir - 1;
