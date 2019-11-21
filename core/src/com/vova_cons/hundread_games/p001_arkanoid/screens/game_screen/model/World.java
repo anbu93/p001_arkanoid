@@ -1,5 +1,6 @@
 package com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.model;
 
+import com.badlogic.gdx.math.Vector2;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.Balance;
 import com.vova_cons.hundread_games.p001_arkanoid.screens.game_screen.Logic;
 
@@ -26,7 +27,7 @@ public class World {
         board.body.y = y;
         board.body.w = w;
         board.body.h = h;
-        board.movement = new Movement();
+        board.movement = new Vector2(0, 0);
         board.rickoshetDirection = RickoshetDirection.Up;
     }
 
@@ -36,8 +37,8 @@ public class World {
         ball.body.y = y;
         ball.body.w = Balance.BALL_SIZE;
         ball.body.h = Balance.BALL_SIZE;
-        ball.movement = new Movement();
-        Logic.setAngle(ball.movement, angle);
+        ball.movement = new Vector2(0, 1f);
+        Logic.setAngle(ball, angle);
         balls.add(ball);
     }
 

@@ -45,7 +45,7 @@ public class GameScreen extends BaseScreen {
     private void createWorld() {
         world = new World(WIDTH, HEIGHT);
         world.initBoard(WIDTH/2f - world.board.body.w/2f, 0, Balance.BOARD_WIDTH, Balance.BOARD_HEIGHT);
-        world.addBall(WIDTH/2f - Balance.BALL_SIZE, Balance.BOARD_HEIGHT, 30f);
+        world.addBall(WIDTH/2f - Balance.BALL_SIZE, Balance.BOARD_HEIGHT + Balance.BALL_SIZE, 30f);
         float space = Balance.BRICKS_SPACE;
         float startX = world.width / 2f - (4.5f*space + 5*Balance.BRICK_WIDTH);
         float startY = world.height - 200 - (2*space + 3*Balance.BRICK_HEIGHT);

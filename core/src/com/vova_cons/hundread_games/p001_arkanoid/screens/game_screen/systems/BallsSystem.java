@@ -28,7 +28,8 @@ public class BallsSystem extends GameSystem {
 
     private void updateBall(Entity ball) {
         checkBricksCollision(ball);
-        checkBoardAndWallsCollision(ball);
+        checkBoardCollision(ball);
+        checkWallsCollisions(ball);
     }
 
     private void checkBricksCollision(Entity ball) {
@@ -63,18 +64,31 @@ public class BallsSystem extends GameSystem {
         return RickoshetDirection.Down;
     }
 
-    private void checkBoardAndWallsCollision(Entity ball) {
-        checkBoard(ball);
-        checkWalls(ball);
-    }
-
-    private void checkBoard(Entity ball) {
+    private void checkBoardCollision(Entity ball) {
         if (Logic.isCollision(ball.body, world.board.body)) {
             applyRickoshet(ball, RickoshetDirection.Up);
+            float deltaX = world.board.body.x + world.board.body.w/2f - (ball.body.x + ball.body.w/2f);
+            float angleForce = (deltaX / (world.board.body.w/2f));
+            float angleDelta = angleForce * Balance.BOARD_ANGLE_MODIFICATOR;
+            float ballAngle = Logic.getAngle(ball);
+            float resultAngle = ballAngle + angleDelta;
+            if (resultAngle < -Balance.MAX_BALL_ANGLE) {
+                resultAngle = -Balance.MAX_BALL_ANGLE;
+            }
+            if (resultAngle > Balance.MAX_BALL_ANGLE) {
+                resultAngle = Balance.MAX_BALL_ANGLE;
+            }
+            Logic.setAngle(ball, resultAngle);
+            float afterAngle = Logic.getAngle(ball);
+            System.out.println("Collision board:\n" +
+                    "\tbefore=" + ballAngle + "\n" +
+                    "\tforce=" + angleForce + "\n" +
+                    "\tdelta=" + angleDelta + "\n" +
+                    "\tresult=" + resultAngle + " (" + afterAngle + ")");
         }
     }
 
-    private void checkWalls(Entity ball) {
+    private void checkWallsCollisions(Entity ball) {
         if (ball.body.x < 0) {
             applyRickoshet(ball, RickoshetDirection.Right);
         }
