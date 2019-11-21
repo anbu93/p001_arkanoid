@@ -10,6 +10,8 @@ import com.vova_cons.hundread_games.p001_arkanoid.services.assets_service.Assets
 import com.vova_cons.hundread_games.p001_arkanoid.services.assets_service.AssetsServiceV1;
 import com.vova_cons.hundread_games.p001_arkanoid.services.fonts_service.FontsService;
 import com.vova_cons.hundread_games.p001_arkanoid.services.fonts_service.FontsServiceV1;
+import com.vova_cons.hundread_games.p001_arkanoid.services.game_speed_service.GameSpeedService;
+import com.vova_cons.hundread_games.p001_arkanoid.services.game_speed_service.GameSpeedServiceV1;
 import com.vova_cons.hundread_games.p001_arkanoid.services.screens_service.ScreensService;
 import com.vova_cons.hundread_games.p001_arkanoid.services.screens_service.ScreensServiceV1;
 
@@ -18,6 +20,7 @@ import com.vova_cons.hundread_games.p001_arkanoid.services.screens_service.Scree
  **/
 public class CoreServiceV1 implements CoreService {
     private final ArkanoidGame game;
+    private GameSpeedService gameSpeedService;
 
     public CoreServiceV1(ArkanoidGame arkanoidGame) {
         this.game = arkanoidGame;
@@ -28,6 +31,8 @@ public class CoreServiceV1 implements CoreService {
         ServiceLocator.register(ScreensService.class, new ScreensServiceV1(game));
         ServiceLocator.register(AssetsService.class, new AssetsServiceV1());
         ServiceLocator.register(FontsService.class, new FontsServiceV1());
+        gameSpeedService = new GameSpeedServiceV1(game);
+        ServiceLocator.register(GameSpeedService.class, gameSpeedService);
     }
 
     @Override
@@ -51,7 +56,7 @@ public class CoreServiceV1 implements CoreService {
 
     @Override
     public void update(float delta) {
-
+        gameSpeedService.update(delta);
     }
 
     @Override

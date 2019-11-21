@@ -15,12 +15,16 @@ import com.vova_cons.hundread_games.p001_arkanoid.services.assets_service.Assets
  **/
 public class Renderer extends Group {
     private World world;
-    private Texture texture;
+    private Texture textureBall;
+    private Texture textureBrick;
+    private Texture textureBoard;
 
     public Renderer(World world) {
         this.world = world;
         AssetsService assetsService = ServiceLocator.getService(AssetsService.class);
-        texture = assetsService.getTexture("badlogic.jpg");
+        textureBall = assetsService.getTexture("textures/ball.png");
+        textureBoard = assetsService.getTexture("textures/board.png");
+        textureBrick = assetsService.getTexture("textures/brick.png");
     }
 
     @Override
@@ -39,7 +43,7 @@ public class Renderer extends Group {
     private void drawBricks(Batch batch) {
         for(Entity entity : world.bricks) {
             if(entity.type == EntityType.Brick) {
-                drawTexture(batch, entity.body, texture);
+                drawTexture(batch, entity.body, textureBrick);
             }
         }
     }
@@ -47,13 +51,13 @@ public class Renderer extends Group {
     private void drawBalls(Batch batch) {
         for(Entity entity : world.balls) {
             if(entity.type == EntityType.Ball) {
-                drawTexture(batch, entity.body, texture);
+                drawTexture(batch, entity.body, textureBall);
             }
         }
     }
 
     private void drawBoard(Batch batch) {
-        drawTexture(batch, world.board.body, texture);
+        drawTexture(batch, world.board.body, textureBoard);
     }
 
     private void drawTexture(Batch batch, Body body, Texture texture) {

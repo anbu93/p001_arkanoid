@@ -18,6 +18,9 @@ public class AssetsServiceV1 implements AssetsService {
     @Override
     public void loadTextures() {
         assetManager.load("badlogic.jpg", Texture.class);
+        assetManager.load("textures/ball.png", Texture.class);
+        assetManager.load("textures/board.png", Texture.class);
+        assetManager.load("textures/brick.png", Texture.class);
     }
 
     @Override

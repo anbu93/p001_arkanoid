@@ -11,6 +11,7 @@ import com.vova_cons.hundread_games.p001_arkanoid.services.core_service.CoreServ
 public class ArkanoidGame extends Game {
 	private CoreService coreService;
 	private Screen nextScreen = null;
+	private float speed = 1f;
 
 	@Override
 	public void create () {
@@ -26,7 +27,7 @@ public class ArkanoidGame extends Game {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		float delta = Gdx.graphics.getDeltaTime();
+		float delta = Gdx.graphics.getDeltaTime() * speed;
 		update(delta);
 		render(delta);
 		performChangeScreen();
@@ -52,5 +53,9 @@ public class ArkanoidGame extends Game {
 	@Override
 	public void setScreen(Screen screen) {
 		this.nextScreen = screen;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
 	}
 }

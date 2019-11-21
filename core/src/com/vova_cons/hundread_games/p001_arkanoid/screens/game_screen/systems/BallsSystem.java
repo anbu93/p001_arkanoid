@@ -52,7 +52,7 @@ public class BallsSystem extends GameSystem {
             return RickoshetDirection.Up;
         }
         if (dy < -Balance.BALL_SIZE/2f) {
-            return RickoshetDirection.Up;
+            return RickoshetDirection.Down;
         }
         if (dx > Balance.BALL_SIZE/2f) {
             return RickoshetDirection.Right;
